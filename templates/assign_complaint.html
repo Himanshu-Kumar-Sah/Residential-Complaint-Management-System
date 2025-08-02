@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assign Complaint</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        form { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; }
+        input, select { width: 100%; padding: 8px; margin: 10px 0; }
+        button { padding: 10px 20px; }
+        .flash { color: red; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <h2>Assign Complaint to Worker</h2>
+<form method="POST">
+    <label for="complaint_id">Select Complaint:</label>
+    <select name="complaint_id" required>
+        {% for c in complaints %}
+            <option value="{{ c[0] }}">
+                ID: {{ c[0] }} | Type: {{ c[1] }} | Scope: {{ c[2] }} | Location: {{ c[3] or 'N/A' }}
+            </option>
+        {% endfor %}
+    </select><br><br>
+
+    <label for="worker_id">Select Worker:</label>
+    <select name="worker_id" required>
+        {% for w in workers %}
+            <option value="{{ w[0] }}">
+                {{ w[1] }} ({{ w[2] }})
+            </option>
+        {% endfor %}
+    </select><br><br>
+
+    <input type="submit" value="Assign">
+</form>
+</body>
+</html>
+
+

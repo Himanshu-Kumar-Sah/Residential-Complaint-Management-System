@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Worker Dashboard</title>
+    <style>
+        body { font-family: Arial; padding: 30px; background-color: #f4f4f4; }
+        h2 { text-align: center; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .button-link {
+            display: block;
+            margin: 10px 0;
+            padding: 12px;
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+        .button-link:hover {
+            background-color: #0056b3;
+        }
+        .logout {
+            background-color: #dc3545;
+        }
+        .logout:hover {
+            background-color: #a71d2a;
+        }
+    </style>
+</head>
+<body>
+    <h2>Welcome, Worker {{ worker_phone_no }}</h2>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <p style="color:green">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <ul>
+        <li><a href="{{ url_for('view_assigned_complaints') }}">View Assigned Complaints</a></li>
+        <li><a href="{{ url_for('update_assigned_complaint_status') }}">Update Complaint Status</a></li>
+        <li><a href="{{ url_for('worker_logout') }}">Logout</a></li>
+    </ul>
+</body>
+</html>

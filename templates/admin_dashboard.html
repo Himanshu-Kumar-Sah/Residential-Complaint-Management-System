@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <style>
+        body { font-family: Arial; padding: 30px; background-color: #f4f4f4; }
+        h2 { text-align: center; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .button-link {
+            display: block;
+            margin: 10px 0;
+            padding: 12px;
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+        .button-link:hover {
+            background-color: #0056b3;
+        }
+        .logout {
+            background-color: #dc3545;
+        }
+        .logout:hover {
+            background-color: #a71d2a;
+        }
+    </style>
+</head>
+<body>
+    <h2>Welcome, {{ admin_username }}</h2>
+    <ul>
+        <li><a href="{{ url_for('view_all_complaints') }}">View All Complaints</a></li>
+        <li><a href="{{ url_for('assign_complaint') }}">Assign Complaint to Workers</a></li>
+        <li><a href="{{ url_for('update_complaint_status') }}">Update Complaint Status</a></li>
+        <li><a href="{{ url_for('add_worker') }}">Add Worker</a></li>
+        <li><a href="{{ url_for('delete_worker') }}">Delete Worker</a></li>
+        <li><a href="{{ url_for('admin_logout') }}">Logout</a></li>
+    </ul>
+</body>
+</html>

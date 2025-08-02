@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Complaint</title>
+    
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        form { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; }
+        input, select { width: 100%; padding: 8px; margin: 10px 0; }
+        button { padding: 10px 20px; }
+        .flash { color: red; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <h2>Add Complaint</h2>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash">
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" enctype="multipart/form-data">
+        <label>Complaint Scope:</label>
+        <select name="complain" required>
+            <option value="">--Select Scope--</option>
+            <option value="P">Personal</option>
+            <option value="C">Community</option>
+        </select>
+
+        <label>Complaint Type:</label>
+        <input type="text" name="complain_type" placeholder="E.g., Plumbing, Electrical" required>
+
+        <label>Description:</label>
+        <textarea name="complain_description" rows="4" placeholder="Describe the issue..." required></textarea>
+        <br>
+        <br>
+        <label>Priority:</label>
+        <select name="complain_priority" required>
+            <option value="">--Select Priority--</option>
+            <option value="Urgent">Urgent</option>
+            <option value="Normal">Normal</option>
+        </select>
+
+        <label>Location (only if Community):</label>
+        <input type="text" name="location" placeholder="E.g., Garden Area, Block C Lobby">
+
+        <label for="complaint_image">Upload Image (optional):</label>
+        <input type="file" name="complaint_image" accept="image/*">
+
+        <button type="submit">Submit Complaint</button>
+    </form>
+</body>
+</html>
+
+
+

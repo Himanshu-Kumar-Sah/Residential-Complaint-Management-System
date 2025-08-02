@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Complaints</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        form { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; }
+        input, select { width: 100%; padding: 8px; margin: 10px 0; }
+        button { padding: 10px 20px; }
+        .flash { color: red; margin-bottom: 15px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
+        img { max-width: 100px; max-height: 100px; }
+    </style>
+</head>
+<body>
+    <h2>Your Complaints</h2>
+    <br><br>
+
+    {% if complaints %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Phone</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Priority</th>
+                <th>Date & Time</th>
+                <th>Status</th>
+                <th>Scope</th>
+                <th>Location</th>
+                <th>Assigned To</th>
+                <th>Worker Phone No.</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in complaints %}
+            <tr>
+                <td>{{ c[0] }}</td>
+                <td>{{ c[1] }}</td>
+                <td>{{ c[2] }}</td>
+                <td>{{ c[3] }}</td>
+                <td>{{ c[4] }}</td>
+                <td>{{ c[5] }}</td>
+                <td>{{ c[6] }}</td>
+                <td>{{ c[7] }}</td>
+                <td>{{ c[8] if c[8] else '-' }}</td>
+                <td>{{ c[9] if c[9] else 'Not Assigned' }}</td>
+                <td>{{ c[10] if c[10] else 'Not Assigned' }}</td>
+                <td>
+                    {% if c[11] and c[11] != 'N/A' %}
+                        <a href="{{ url_for('static', filename='complaint_images/' ~ c[11]) }}" target="_blank">View Image</a>
+                    {% else %}
+                        No Image
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No complaints found.</p>
+    {% endif %}
+
+    <br>
+    <a href="{{ url_for('user_dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

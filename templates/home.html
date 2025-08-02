@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complaint Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .options {
+            margin-top: 30px;
+        }
+        .options a {
+            display: inline-block;
+            margin: 15px;
+            padding: 15px 30px;
+            font-size: 16px;
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            border-radius: 8px;
+        }
+        .options a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to the Complaint Management System</h1>
+
+    <div class="options">
+        <a href="{{ url_for('registration') }}">Register as User</a>
+        <a href="{{ url_for('user_login') }}">Login as User</a>
+        <a href="{{ url_for('admin_login') }}">Login as Admin</a>
+        <a href="{{ url_for('worker_login') }}">Login as Worker</a>
+    </div>
+
+</body>
+</html>

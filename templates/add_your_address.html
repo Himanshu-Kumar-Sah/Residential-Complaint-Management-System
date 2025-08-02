@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Your Address</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        form { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; }
+        input, select { width: 100%; padding: 8px; margin: 10px 0; }
+        button { padding: 10px 20px; }
+        .flash { color: red; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <h2>Add Your Address</h2>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash">
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <label>Your House No.:</label>
+        <input type="number" name="house_no" required>
+
+        <label>Your Tower No.:</label>
+        <input type="text" name="tower" required>
+
+        <label>Your Floor No.:</label>
+        <input type="number" name="floor" required>
+
+        <label>Locality:</label>
+        <input type="text" name="locality" required>
+
+        <label>Area:</label>
+        <input type="text" name="area" required>
+
+        <label>City:</label>
+        <input type="text" name="city" required>
+
+        <label>State:</label>
+        <input type="text" name="state" required>
+
+        <label>Pincode:</label>
+        <input type="number" name="pincode" required>
+
+        <button type="submit">Add Address</button>
+    </form>
+</body>
+</html>

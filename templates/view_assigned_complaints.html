@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assigned Complaints</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        form { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; }
+        input, select { width: 100%; padding: 8px; margin: 10px 0; }
+        button { padding: 10px 20px; }
+        .flash { color: red; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <h2>Assigned Complaints</h2>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <p style="color:red">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% if complaints %}
+        {% for c in complaints %}
+            <hr>
+            <p><strong>Complaint ID:</strong> {{ c.complaint_id }}</p>
+            <p><strong>Phone No:</strong> {{ c.user_phone_no }}</p>
+            <p><strong>Type:</strong> {{ c.type }}</p>
+            <p><strong>Description:</strong> {{ c.desc }}</p>
+            <p><strong>Priority:</strong> {{ c.priority }}</p>
+            <p><strong>Scope:</strong> {{ c.scope }}</p>
+
+            {% if c.scope == 'Community' %}
+                <p><strong>Location:</strong> {{ c.location or 'N/A' }}</p>
+            {% elif c.scope == 'Personal' and c.address %}
+                <p><strong>Address:</strong> House {{ c.address.house_no }}, Tower {{ c.address.tower }},
+                   Floor {{ c.address.floor }}, {{ c.address.locality }}, {{ c.address.area }},
+                   {{ c.address.city }}, {{ c.address.state }} - {{ c.address.pincode }}</p>
+            {% else %}
+                <p><strong>Address:</strong> Not Available</p>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p>No complaints assigned.</p>
+    {% endif %}
+</body>
+</html>

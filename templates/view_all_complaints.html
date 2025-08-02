@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Complaints</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        form { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; }
+        input, select { width: 100%; padding: 8px; margin: 10px 0; }
+        button { padding: 10px 20px; }
+        .flash { color: red; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <h2>All Complaints</h2>
+
+    <form method="POST">
+        <label>Priority:
+            <select name="priority">
+                <option value="">--All--</option>
+                <option value="Urgent">Urgent</option>
+                <option value="Normal">Normal</option>
+            </select>
+        </label>
+        <label>Status:
+            <select name="status">
+                <option value="">--All--</option>
+                <option value="Pending">Pending</option>
+                <option value="In progress">In progress</option>
+                <option value="Resolved">Resolved</option>
+            </select>
+        </label>
+        <label>Scope:
+            <select name="scope">
+                <option value="">--All--</option>
+                <option value="Personal">Personal</option>
+                <option value="Community">Community</option>
+            </select>
+        </label>
+        <label>Assigned To:
+            <input type="text" name="assigned_to">
+        </label>
+        <button type="submit">Apply Filters</button>
+    </form>
+
+    <br><br>
+
+    {% if complaints %}
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th><th>Phone</th><th>Type</th><th>Description</th>
+                <th>Priority</th><th>Date & Time</th><th>Status</th>
+                <th>Scope</th><th>Location</th><th>Assigned To</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in complaints %}
+            <tr>
+                <td>{{ c[0] }}</td>
+                <td>{{ c[1] }}</td>
+                <td>{{ c[2] }}</td>
+                <td>{{ c[3] }}</td>
+                <td>{{ c[4] }}</td>
+                <td>{{ c[5] }}</td>
+                <td>{{ c[6] }}</td>
+                <td>{{ c[7] }}</td>
+                <td>{{ c[8] if c[8] else '-' }}</td>
+                <td>{{ c[9] if c[9] else 'Not Assigned' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No complaints found.</p>
+    {% endif %}
+
+    <br>
+    <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

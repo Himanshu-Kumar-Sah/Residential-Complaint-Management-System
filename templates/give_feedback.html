@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Give Feedback</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+        form { max-width: 500px; margin: auto; }
+        input, textarea, select { width: 100%; padding: 8px; margin: 10px 0; }
+        button { padding: 10px 20px; }
+        .flash { color: red; }
+    </style>
+</head>
+<body>
+    <h2>Give Feedback on Resolved Complaints</h2>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash">
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% if complaints %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Date & Time</th>
+                <th>Priority</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in complaints %}
+            <tr>
+                <td>{{ c[0] }}</td>
+                <td>{{ c[1] }}</td>
+                <td>{{ c[2] }}</td>
+                <td>{{ c[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <form method="POST">
+        <label for="complaint_id">Complaint ID:</label>
+        <input type="text" name="complaint_id" required>
+
+        <label for="feedback_rating">Rating (1 to 5):</label>
+        <select name="feedback_rating" required>
+            <option value="">--Select--</option>
+            {% for i in range(1, 6) %}
+            <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="feedback_text">Feedback (optional):</label>
+        <textarea name="feedback_text" rows="4" placeholder="Write your feedback here..."></textarea>
+
+        <button type="submit">Submit Feedback</button>
+    </form>
+    {% else %}
+        <p>No resolved complaints available for feedback.</p>
+    {% endif %}
+</body>
+</html>
