@@ -1,10 +1,11 @@
 import os
 
-DB_HOST = os.getenv("DB_HOST")
-DB_USER = os.getenv("DB_USER")
-DB_PASS = os.getenv("DB_PASS")
-DB_NAME = os.getenv("DB_NAME")
-DB_PORT = int(os.getenv("DB_PORT", 3306)) 
+DB_HOST = os.getenv("MYSQLHOST") or os.getenv("DB_HOST")
+DB_USER = os.getenv("MYSQLUSER") or os.getenv("DB_USER")
+DB_PASS = os.getenv("MYSQLPASSWORD") or os.getenv("DB_PASS")
+DB_NAME = os.getenv("MYSQLDATABASE") or os.getenv("DB_NAME")
+
+DB_PORT = int(os.getenv("MYSQLPORT", os.getenv("DB_PORT", 3306)))
 
 MAIL_SERVER = os.getenv("MAIL_SERVER")
 MAIL_PORT = int(os.getenv("MAIL_PORT", 587))
