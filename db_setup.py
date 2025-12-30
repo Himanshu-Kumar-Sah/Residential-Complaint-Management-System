@@ -9,6 +9,7 @@ def connection():
             user=config.DB_USER,
             password=config.DB_PASS,
             database=config.DB_NAME
+            port=int(config.DB_PORT)
         )
         print("Database connected successfully.")
         return db
