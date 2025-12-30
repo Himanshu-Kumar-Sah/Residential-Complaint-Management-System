@@ -1,7 +1,5 @@
 import mysql.connector
-import config
 import os
-
 
 def connection():
     try:
@@ -9,12 +7,11 @@ def connection():
             host=os.environ["MYSQLHOST"],
             user=os.environ["MYSQLUSER"],
             password=os.environ["MYSQLPASSWORD"],
-            database=os.environ["MYSQLDATABASE"],
-            port=int(os.environ.get("MYSQLPORT", "3306"))
+            database=os.environ["MYSQLDATABASE"]
         )
         print("Database connected successfully.")
         return db
-    except mysql.connector.Error as err:
+    except Exception as err:
         print("Error connecting to database:", err)
         return None
 
