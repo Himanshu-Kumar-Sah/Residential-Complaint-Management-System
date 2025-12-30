@@ -8,7 +8,7 @@ def connection():
             host=config.DB_HOST,
             user=config.DB_USER,
             password=config.DB_PASS,
-            database=config.DB_NAME
+            database=config.DB_NAME,
             port=int(config.DB_PORT)
         )
         print("Database connected successfully.")
