@@ -5,11 +5,11 @@ import config
 def connection():
     try:
         db = mysql.connector.connect(
-            host=config.DB_HOST,
-            user=config.DB_USER,
-            password=config.DB_PASS,
-            database=config.DB_NAME,
-            port=int(config.DB_PORT)
+            host=os.environ["MYSQLHOST"],
+            user=os.environ["MYSQLUSER"],
+            password=os.environ["MYSQLPASSWORD"],
+            database=os.environ["MYSQLDATABASE"],
+            port=int(os.environ.get("MYSQLPORT", "3306"))
         )
         print("Database connected successfully.")
         return db
