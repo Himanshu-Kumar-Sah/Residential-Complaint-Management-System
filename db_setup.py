@@ -1,5 +1,6 @@
 import mysql.connector
 import config
+import os
 
 
 def connection():
